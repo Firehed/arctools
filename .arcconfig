@@ -1,7 +1,7 @@
 {
     "phabricator.uri": "https://phabricator.ericstern.com",
     "unit.engine": "Firehed\\Arctools\\PHPUnitTestEngine",
-    "phpunit_config": "phpunit.xml.dist",
+    "phpunit.config": "phpunit.xml.dist",
     "https.blindly-trust-domains": [
         "phabricator.ericstern.com"
     ],

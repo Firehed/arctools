@@ -19,8 +19,8 @@ it does not already exist) and add the following values:
 
 Additional Configuration
 ------------------------
-* `"phpunit_config": "relative/path/to/phpunit.xml"`
-* Source directory (future)
-* Tests directory (future)
+* `"phpunit.config": "relative/path/to/phpunit.xml"`
+* `"phpunit.source_directory": "path/to/source"`,
+* `"phpunit.test_directory": "path/to/tests"`,
 * Test suffix (future)
 
