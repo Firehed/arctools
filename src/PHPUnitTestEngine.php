@@ -68,6 +68,22 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
         $futures = array();
         $temp_files = array();
 
+        // This is a really hacky but safe way to determine where libphutil
+        // came from: simply search the list of included files for the init
+        // script. This should allow `arc` to live absolutely anywhere without
+        // making any assumptions about how you entered the workflow or whether
+        // arcanist and libphutil are even used by the codebase.
+        $search = 'libphutil'.DIRECTORY_SEPARATOR.'scripts'.
+            DIRECTORY_SEPARATOR.'__init_script__.php';
+        $include_path = null;
+        foreach (get_included_files() as $include) {
+            if ($search === substr($include, -strlen($search))) {
+                $include_path = csprintf('--include-path %s',
+                    substr($include, 0, -strlen($search)));
+                break;
+            }
+        }
+
         foreach ($this->test_cases as $test_path) {
             $json_tmp = new TempFile();
             $clover_tmp = null;
@@ -80,7 +96,6 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
             $config = $this->phpunit_config_file
                 ? csprintf('--configuration %s', $this->phpunit_config_file)
                 : null;
-            $include_path = csprintf('--include-path %s', $this->project_root);
             $bin = 'vendor/bin/phpunit';
             $phpunit = Filesystem::resolvePath($bin, $this->project_root);
             $stderr = '-d display_errors=stderr';
