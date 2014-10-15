@@ -1,14 +1,5 @@
 <?php
 
-foreach ([
-    __DIR__.'/../vendor/autoload.php', // This project
-    __DIR__.'/../../../vendor/autoload.php', // Anything using this project
-    ] as $autoloader) {
-    if (file_exists($autoloader)) {
-        require_once $autoloader;
-    }
-}
-
 // The include_path should have had libphutil's path appended when this file is
 // included from the `arc unit` workflow.
 @include_once 'libphutil/scripts/__init_script__.php';
