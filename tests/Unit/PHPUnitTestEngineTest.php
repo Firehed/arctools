@@ -1,13 +1,13 @@
 <?php
 
-namespace Firehed\Arctools;
+namespace Firehed\Arctools\Unit;
 
 use Exception;
 use ArcanistWorkingCopyIdentity;
 use ArcanistNoEffectException;
 
 /**
- * @coversDefaultClass Firehed\Arctools\PHPUnitTestEngine
+ * @coversDefaultClass Firehed\Arctools\Unit\PHPUnitTestEngine
  * @covers ::<protected>
  * @covers ::<private>
  */

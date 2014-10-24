@@ -11,9 +11,9 @@ In your project's root directory, edit the `.arcconfig` file (or create one if
 it does not already exist) and add the following values:
 
     {
-        "unit.engine": "Firehed\\Arctools\\PHPUnitTestEngine",
+        "unit.engine": "Firehed\\Arctools\\Unit\\PHPUnitTestEngine",
         "load": [
-            "vendor/firehed/arctools"
+            "vendor/firehed/arctools/src"
         ]
     }
 

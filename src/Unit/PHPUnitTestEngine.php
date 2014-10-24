@@ -1,6 +1,6 @@
 <?php
 
-namespace Firehed\Arctools;
+namespace Firehed\Arctools\Unit;
 
 use ArcanistNoEffectException;
 use ArcanistUnitTestEngine;
