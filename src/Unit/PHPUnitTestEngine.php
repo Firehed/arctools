@@ -7,6 +7,7 @@ use ArcanistUnitTestEngine;
 use Exception;
 use ExecFuture;
 use Filesystem;
+use FutureIterator;
 use PhpunitResultParser;
 use PhutilConsole;
 use TempFile;
@@ -111,7 +112,7 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
 
         $this->console->writeLog("##Executing tests##\n");
         $results = [];
-        foreach (Futures($futures)->limit(4) as $test => $future) {
+        foreach ((new FutureIterator($futures))->limit(4) as $test => $future) {
             list($err, $stdout, $stderr) = $future->resolve();
             $results[] = $this->parseTestResults($test,
                 $temp_files[$test]['json'],
