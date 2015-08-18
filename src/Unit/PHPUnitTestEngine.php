@@ -3,12 +3,12 @@
 namespace Firehed\Arctools\Unit;
 
 use ArcanistNoEffectException;
+use ArcanistPhpunitTestResultParser;
 use ArcanistUnitTestEngine;
 use Exception;
 use ExecFuture;
 use Filesystem;
 use FutureIterator;
-use PhpunitResultParser;
 use PhutilConsole;
 use TempFile;
 
@@ -183,7 +183,7 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
      */
     private function parseTestResults($path, $json_tmp, $clover_tmp, $stderr) {
         $test_results = Filesystem::readFile($json_tmp);
-        return id(new PhpunitResultParser())
+        return id(new ArcanistPhpunitTestResultParser())
             ->setEnableCoverage($this->getEnableCoverage())
             ->setProjectRoot($this->getWorkingCopy()->getProjectRoot())
             ->setCoverageFile($clover_tmp)
