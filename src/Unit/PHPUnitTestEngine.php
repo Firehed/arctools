@@ -94,16 +94,16 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
                 $clover = csprintf('--coverage-clover %s', $clover_tmp);
             }
 
-            $config = $this->phpunit_config_file
+            $config = file_exists($this->phpunit_config_file)
                 ? csprintf('--configuration %s', $this->phpunit_config_file)
                 : null;
             $bin = 'vendor/bin/phpunit';
             $phpunit = Filesystem::resolvePath($bin, $this->project_root);
             $stderr = '-d display_errors=stderr';
             $futures[$test_path] = new ExecFuture(
-                '%C %C %C %C --log-json %s %C %s',
+                '%C %C %C %C --log-json %s %C --whitelist %s %s',
                 $phpunit, $stderr, $config, $include_path,
-                $json_tmp, $clover, $test_path);
+                $json_tmp, $clover, $this->source_directory, $test_path);
             $temp_files[$test_path] = [
                 'json' => $json_tmp,
                 'clover' => $clover_tmp,

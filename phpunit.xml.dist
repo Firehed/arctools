@@ -2,17 +2,4 @@
     bootstrap="tests/bootstrap.php"
     forceCoversAnnotation="true"
     >
-    <testsuites>
-        <testsuite name="arctools">
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src/</directory>
-        </whitelist>
-    </filter>
-    <!--logging>
-        <log type="coverage-html" target="coverage" charset="UTF-8" />
-    </logging-->
 </phpunit>

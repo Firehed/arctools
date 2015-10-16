@@ -2,7 +2,7 @@
     "name": "firehed/arctools",
     "description": "Easily integrate with Arcanist and libphutil",
     "require-dev": {
-        "phpunit/phpunit": "~4.3"
+        "phpunit/phpunit": "~5.0"
     },
     "license": "MIT",
     "authors": [
