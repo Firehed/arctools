@@ -101,7 +101,7 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
             $phpunit = Filesystem::resolvePath($bin, $this->project_root);
             $stderr = '-d display_errors=stderr';
             $futures[$test_path] = new ExecFuture(
-                '%C %C %C %C --log-json %s %C --whitelist %s %s',
+                '%C %C %C %C --log-junit %s %C --whitelist %s %s',
                 $phpunit, $stderr, $config, $include_path,
                 $json_tmp, $clover, $this->source_directory, $test_path);
             $temp_files[$test_path] = [
@@ -183,7 +183,7 @@ final class PHPUnitTestEngine extends ArcanistUnitTestEngine {
      */
     private function parseTestResults($path, $json_tmp, $clover_tmp, $stderr) {
         $test_results = Filesystem::readFile($json_tmp);
-        return id(new ArcanistPhpunitTestResultParser())
+        return id(new ResultParser())
             ->setEnableCoverage($this->getEnableCoverage())
             ->setProjectRoot($this->getWorkingCopy()->getProjectRoot())
             ->setCoverageFile($clover_tmp)
